@@ -70,8 +70,115 @@ footer {
         object-fit: fill;
         pointer-events: none;
     }
+}
 
-    &>div {
+
+#reservation {
+    --widthImageBlock: 5.20833vw;
+    --widthTextBlock: 0vw;
+    --sideX: calc(var(--widthImageBlock) + var(--widthTextBlock));
+    --sideY: 5.20833vw;
+    --borderSize: 0.26042vw;
+    position: absolute;
+    z-index: 2;
+    width: var(--sideX);
+    height: var(--sideY);
+    background-image: linear-gradient(90deg, #ffb190 0%, #996a56 100%);
+    right: 10.41667vw;
+    bottom: 7.86458vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: calc(var(--sideY)/2);
+    cursor: pointer;
+
+    transition: width 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+
+    &>#preview {
+        position: absolute;
+        content: "";
+        z-index: 3;
+        border-radius: inherit;
+        width: calc(var(--sideX) - var(--borderSize)*2);
+        height: calc(var(--sideY) - var(--borderSize)*2);
+        background-color: var(--contentColor);
+        opacity: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 0.3s ease-in-out;
+
+        &>svg {
+            object-fit: contain;
+            overflow: visible;
+            width: 2.60417vw;
+
+            &>path {
+                transition: fill 0.3s ease-in-out;
+            }
+        }
+    }
+
+    &>#openButtonState {
+        position: absolute;
         z-index: 2;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        display: flex;
+        align-items: center;
+
+        &>#textButton {
+            font-family: 'Inter';
+            width: var(--widthTextBlock);
+            transition: width 0.3s ease-in-out;
+            text-align: right;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: 1.40625vw;
+            font-weight: 400;
+            color: #262320;
+
+        }
+
+        &>#logoButton {
+            width: var(--widthImageBlock);
+            transition: width 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &>svg {
+                object-fit: contain;
+                overflow: visible;
+                width: 2.60417vw;
+
+                &>path {
+                    transition: fill 0.3s ease-in-out;
+                }
+            }
+        }
+
+    }
+
+    &:hover {
+        --widthImageBlock: 3.4375vw;
+        --widthTextBlock: 20vw;
+        border-radius: 1.04167vw;
+
+        &>#preview {
+            opacity: 0;
+
+            & path {
+                fill: #262320;
+            }
+        }
+
+        &>#openButtonState {
+            opacity: 1;
+
+            & path {
+                fill: #262320;
+            }
+        }
     }
 }
